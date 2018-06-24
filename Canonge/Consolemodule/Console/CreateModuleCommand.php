@@ -23,17 +23,17 @@ class CreateModuleCommand extends Command
 
     protected function configure()
     {
-        $this->setName('example:greeting')
-            ->setDescription('Greeting command')
-            ->setDefinition(
-                [
-                    new InputArgument(
-                        self::NAME,
-                        InputArgument::OPTIONAL,
-                        'Veuillez a renseigner le nom du module ex : Coca_Slider'
-                    ),
+        $this->setName('create:module')
+        ->setDescription('Create a module with the console')
+        ->setDefinition(
+            [
+            new InputArgument(
+                self::NAME,
+                InputArgument::OPTIONAL,
+                'Veuillez a renseigner le nom du module ex : Coca_Slider'
+                ),
 
-                ]
+            ]
             );
         parent::configure();
 
@@ -45,9 +45,8 @@ class CreateModuleCommand extends Command
             $desc = $this->getDefinition()->getArgument(1)->getDescription();
             $output->writeln($desc);
         } else {
-            $name =$input->getArgument(self::NAME);
-            $output->writeln($name);
-           $this->_module->createModule($name);
+            $name =$input->getArgument(self::NAME);           
+            $this->_module->createModule($name);
         }
 
     }
